@@ -1,30 +1,25 @@
 import { render ,fireEvent,screen} from '@testing-library/react'
-import React from 'react'
-import ReactDOM from 'react-dom/client';
+import App from '../App';
 import Toggle from '../components/Toggle';
 
 
-describe('Pruebas en Toggle',() => {
+describe(' Toggle tests',() => {
 
-    test('Prueba toggle', async() => { 
+    test('Should change label color when input clicked', () => { 
+            render(<App><Toggle /></App>);
+             const input =  screen.getByRole('checkbox');
+             const label = screen.getByTestId('label');
+
+           expect(label).toHaveStyle({ backgroundColor: '' });
            
-           const snap = render(<Toggle />)
-           expect(snap).toMatchSnapshot();
-
-        //    const input =  screen.getByTestId('input');
-        //    fireEvent.click(input);
-        //    const label = screen.getByTestId('label')
-        //    expect(label.style.background).toBe('red');
-        //   expect(label).toHaveStyle('color: red');
-           
-
-           
-        
-           
-
-            
+           fireEvent.click(input); 
+           expect(label).toHaveStyle({ backgroundColor: 'red' });
+                })
 
 
-     })
+      test('should match snapshot', () => { 
+         const component = render(<App><Toggle /></App>)
+         expect(component).toMatchSnapshot();
+      })
 
 })
