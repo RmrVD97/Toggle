@@ -14,7 +14,7 @@ function App() {
         isOn={value}
         handleToggle={() => setValue(!value)
         }
-        onColor='red'
+       
       />
     </div>
   );
